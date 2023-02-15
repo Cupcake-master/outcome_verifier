@@ -26,9 +26,15 @@
         <h2 class="sr-only">Login Form</h2>
         <div class="illustration"><i class="icon ion-ios-locked-outline"></i><input class="form-control" type="text"
                                                                                     max="30" style="color:pink"
-                                                                                    placeholder="Nickname"
-                                                                                    name="nickname" id="nickname"
+                                                                                    placeholder="Name"
+                                                                                    name="name" id="name"
                                                                                     required="required"></div>
+        <div class="form-group"><input class="form-control" type="text" name="surname" id="surname" placeholder="Surname"
+                                       required="required" max="30" style="color:yellow"></div>
+        <div class="form-group"><input class="form-control" type="text" name="patronymic" id="patronymic" placeholder="Patronymic"
+                                       required="required" max="30" style="color:yellow"></div>
+        <div class="form-group"><input class="form-control" type="text" name="squad" id="squad" placeholder="Group"
+                                       required="required" max="30" style="color:yellow"></div>
         <div class="form-group"><input class="form-control" type="text" name="email" id="email" placeholder="Email"
                                        required="required" max="30" style="color:yellow"></div>
         <div class="form-group"><input class="form-control" type="password" name="password" id="password"
@@ -48,14 +54,22 @@
 </div>
 <script>
     function validateForm() {
-        let nickname = document.getElementById('nickname');
+        let nickname = document.getElementById('name');
+        let surname = document.getElementById('surname');
+        let patronymic = document.getElementById('patronymic');
         let email_regexp = /[0-9a-zа-я_A-ZА-Я]+@[0-9a-zа-я_A-ZА-Я^.]+\.[a-zа-яА-ЯA-Z]{2,4}/i;
         let email = document.getElementById('email');
         let password1 = document.getElementById('password');
         let password2 = document.getElementById('rePassword');
         let error = '';
-        if (nickname.value.length < 6 || nickname.value.length > 30 ){
-            error+='Nickname must be between 6 and 30 characters! \n';
+        if (nickname.value.length < 3 || nickname.value.length > 30 ){
+            error+='Name must be between 3 and 30 characters! \n';
+        }
+        if (surname.value.length < 3 || surname.value.length > 30 ){
+            error+='Surname must be between 3 and 30 characters! \n';
+        }
+        if (patronymic.value.length < 3 || patronymic.value.length > 30 ){
+            error+='patronymic must be between 3 and 30 characters! \n';
         }
         if (!email_regexp.test(email.value)) {
             error+='Email is entered incorrectly! \n';

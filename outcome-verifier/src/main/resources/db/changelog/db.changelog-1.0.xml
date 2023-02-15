@@ -9,7 +9,19 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="nickname" type="VARCHAR(100)">
+            <column name="name" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="surname" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="patronymic" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="squad" type="VARCHAR(6)">
                 <constraints nullable="false"/>
             </column>
 

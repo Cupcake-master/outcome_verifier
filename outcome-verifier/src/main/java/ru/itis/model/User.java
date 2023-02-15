@@ -14,8 +14,17 @@ import java.util.List;
 @Table(name = "users")
 public class User extends BaseEntity{
 
-    @Column(name = "nickname")
-    private String nickname;
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "surname")
+    private String surname;
+
+    @Column(name = "patronymic")
+    private String patronymic;
+
+    @Column(name = "squad")
+    private String squad;
 
     @Column(name = "email")
     private String email;
