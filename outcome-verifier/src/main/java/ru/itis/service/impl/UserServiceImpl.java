@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void signUp(User user) {
-        Optional<Role> roleUser = roleService.findByName("ROLE_USER");
+        Optional<Role> roleUser = roleService.findByName("ROLE_STUDENT");
         roleUser.ifPresent(role -> user.setRoles(Collections.singletonList(role)));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Optional<State> state = stateService.findByName("NOT_ACTIVE");
