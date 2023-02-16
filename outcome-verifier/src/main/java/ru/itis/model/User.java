@@ -35,6 +35,10 @@ public class User extends BaseEntity{
     @Column(name = "token", length = 500)
     private String token;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "state_id", referencedColumnName = "id")
+    private State state;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},

@@ -14,7 +14,7 @@ import java.util.Properties;
 public class OutcomeVerifierApplication {
 
     @Bean
-    public RestTemplate restTemplate(){
+    public RestTemplate restTemplate() {
         return new RestTemplate();
     }
 
@@ -23,14 +23,16 @@ public class OutcomeVerifierApplication {
         Properties properties = new Properties();
         properties.put("mail.smtp.auth", "true");
         properties.put("mail.smtp.starttls.enable", "true");
-        properties.put("mail.smtp.host", "smtp.gmail.com");
-        properties.put("mail.smtp.port", "587");
-        return new SenderConfig("ainurgatin@gmail.com", "ainur08_A", properties);
+        properties.put("mail.smtp.ssl.enable", "true");
+        properties.put("mail.host", "smtp.yandex.ru");
+        properties.put("mail.port", "465");
+        return new SenderConfig("bilalov.bulat.2023@yandex.com",
+                "daptfevmuzrwbqlm", properties);
     }
 
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(OutcomeVerifierApplication.class, args);
-        DispatcherServlet dispatcherServlet = (DispatcherServlet)ctx.getBean("dispatcherServlet");
+        DispatcherServlet dispatcherServlet = (DispatcherServlet) ctx.getBean("dispatcherServlet");
         dispatcherServlet.setThrowExceptionIfNoHandlerFound(true);
     }
 

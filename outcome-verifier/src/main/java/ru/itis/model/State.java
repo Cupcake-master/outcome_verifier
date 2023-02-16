@@ -1,5 +1,27 @@
 package ru.itis.model;
 
-public enum State {
-    ACTIVE, NOT_ACTIVE, DELETED, BANNED
+import lombok.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@EqualsAndHashCode(callSuper = false)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "states")
+public class State extends BaseEntity{
+
+    @Column(name = "name")
+    private String name;
+
+    @OneToOne(mappedBy = "state")
+    private User user;
+
+    @OneToOne(mappedBy = "state")
+    private Role role_id;
 }

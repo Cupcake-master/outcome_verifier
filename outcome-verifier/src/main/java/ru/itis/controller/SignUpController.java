@@ -49,14 +49,18 @@ public class SignUpController {
     @PostMapping
     public String signUp(User user, BindingResult result, ModelMap model,
                          @RequestParam("g-recaptcha-response") String captchaResponse){
-        userValidator.validate(user, result);
-        StringBuilder error = errorChecking(captchaResponse, result);
-        if (error.length() == 0){
-            Attributes.addSuccessAttributes(model, "A confirmation letter will come to your mail soon!");
-            userService.signUp(user);
-            emailService.sendConfirmation(user);
-        }else{
-            Attributes.addErrorAttributes(model, String.valueOf(error));
+        try {
+            userValidator.validate(user, result);
+            StringBuilder error = errorChecking(captchaResponse, result);
+            if (error.length() == 0){
+                Attributes.addSuccessAttributes(model, "A confirmation letter will come to your mail soon!");
+                userService.signUp(user);
+                emailService.sendConfirmation(user);
+            }else{
+                Attributes.addErrorAttributes(model, String.valueOf(error));
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
         }
         return "/signUp";
     }

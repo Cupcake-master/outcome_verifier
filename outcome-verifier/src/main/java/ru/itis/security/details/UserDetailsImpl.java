@@ -1,6 +1,5 @@
 package ru.itis.security.details;
 
-import ru.itis.model.State;
 import ru.itis.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -51,6 +50,6 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return user.getStatus().equals(State.ACTIVE);
+        return true;
     }
 }

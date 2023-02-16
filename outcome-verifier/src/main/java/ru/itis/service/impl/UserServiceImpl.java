@@ -1,7 +1,6 @@
 package ru.itis.service.impl;
 
 import ru.itis.model.Role;
-import ru.itis.model.State;
 import ru.itis.model.User;
 import ru.itis.repository.UserRepository;
 import ru.itis.service.RoleService;
@@ -44,7 +43,7 @@ public class UserServiceImpl implements UserService {
         Optional<Role> roleUser = roleService.findByName("ROLE_USER");
         roleUser.ifPresent(role -> user.setRoles(Collections.singletonList(role)));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setStatus(State.NOT_ACTIVE);
+        //user.setStatus(StateImpl.NOT_ACTIVE);
         user.setCreated(new Date());
         user.setUpdated(new Date());
         user.setToken(generateNewToken());
@@ -72,7 +71,7 @@ public class UserServiceImpl implements UserService {
         Optional<User> optionalUser = findByToken(token);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            user.setStatus(State.ACTIVE);
+            //user.setStatus(StateImpl.ACTIVE);
             save(user);
             return true;
         } else {
