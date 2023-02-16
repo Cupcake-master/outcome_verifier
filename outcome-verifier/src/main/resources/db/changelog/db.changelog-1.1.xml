@@ -35,4 +35,37 @@
         </insert>
     </changeSet>
 
+    <changeSet id="1.1.2" author="bulat.bilalov">
+        <insert tableName="squads">
+            <column name="name" value="11-901"/>
+        </insert>
+
+        <insert tableName="squads">
+            <column name="name" value="11-902"/>
+        </insert>
+
+        <insert tableName="squads">
+            <column name="name" value="11-903"/>
+        </insert>
+
+        <insert tableName="squads">
+            <column name="name" value="11-904"/>
+        </insert>
+
+        <insert tableName="squads">
+            <column name="name" value="11-905"/>
+        </insert>
+
+        <insert tableName="squads">
+            <column name="name" value="11-906"/>
+        </insert>
+
+        <insert tableName="squads">
+            <column name="name" value="11-907"/>
+        </insert>
+
+        <insert tableName="squads">
+            <column name="name" value="11-908"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>
