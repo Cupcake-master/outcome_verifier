@@ -21,7 +21,4 @@ public class State extends BaseEntity{
 
     @OneToOne(mappedBy = "state")
     private User user;
-
-    @OneToOne(mappedBy = "state")
-    private Role role_id;
 }

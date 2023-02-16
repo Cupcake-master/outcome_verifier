@@ -1,9 +1,11 @@
 package ru.itis.service.impl;
 
 import ru.itis.model.Role;
+import ru.itis.model.State;
 import ru.itis.model.User;
 import ru.itis.repository.UserRepository;
 import ru.itis.service.RoleService;
+import ru.itis.service.StateService;
 import ru.itis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -21,11 +23,14 @@ public class UserServiceImpl implements UserService {
     private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
 
+    private final StateService stateService;
+
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleService roleService, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService, PasswordEncoder passwordEncoder, StateService stateService) {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
+        this.stateService = stateService;
     }
 
     @Override
@@ -43,7 +48,8 @@ public class UserServiceImpl implements UserService {
         Optional<Role> roleUser = roleService.findByName("ROLE_USER");
         roleUser.ifPresent(role -> user.setRoles(Collections.singletonList(role)));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        //user.setStatus(StateImpl.NOT_ACTIVE);
+        Optional<State> state = stateService.findByName("NOT_ACTIVE");
+        user.setState(state.get());
         user.setCreated(new Date());
         user.setUpdated(new Date());
         user.setToken(generateNewToken());
@@ -71,7 +77,8 @@ public class UserServiceImpl implements UserService {
         Optional<User> optionalUser = findByToken(token);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-            //user.setStatus(StateImpl.ACTIVE);
+            Optional<State> state = stateService.findByName("ACTIVE");
+            user.setState(state.get());
             save(user);
             return true;
         } else {

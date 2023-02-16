@@ -21,7 +21,7 @@ public class Role extends BaseEntity implements GrantedAuthority {
     private List<User> users;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    @JoinColumn(name = "state_id", referencedColumnName = "id")
     private State state;
 
     @Override
