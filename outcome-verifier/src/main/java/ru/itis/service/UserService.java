@@ -11,7 +11,7 @@ public interface UserService {
 
     Optional<User> findByToken(String token);
 
-    void signUp(User user);
+    void signUp(User user, String squad_name);
 
     User save(User user);
 

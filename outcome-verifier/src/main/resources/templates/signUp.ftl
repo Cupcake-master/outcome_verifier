@@ -34,7 +34,7 @@
         <div class="form-group"><input class="form-control" type="text" name="patronymic" id="patronymic" placeholder="Patronymic"
                                        required="required" max="30" style="color:yellow"></div>
         <div class="form-group"><input class="form-control" type="text" name="squad" id="squad" placeholder="Group"
-                                       required="required" max="30" style="color:yellow"></div>
+                                       required="required" max="5" style="color:yellow"></div>
         <div class="form-group"><input class="form-control" type="text" name="email" id="email" placeholder="Email"
                                        required="required" max="30" style="color:yellow"></div>
         <div class="form-group"><input class="form-control" type="password" name="password" id="password"
@@ -57,6 +57,7 @@
         let nickname = document.getElementById('name');
         let surname = document.getElementById('surname');
         let patronymic = document.getElementById('patronymic');
+        let squad = document.getElementById('squad');
         let email_regexp = /[0-9a-zа-я_A-ZА-Я]+@[0-9a-zа-я_A-ZА-Я^.]+\.[a-zа-яА-ЯA-Z]{2,4}/i;
         let email = document.getElementById('email');
         let password1 = document.getElementById('password');
@@ -64,6 +65,9 @@
         let error = '';
         if (nickname.value.length < 3 || nickname.value.length > 30 ){
             error+='Name must be between 3 and 30 characters! \n';
+        }
+        if (squad.value.length === 5){
+            error+='Squad must be 6 characters! \n';
         }
         if (surname.value.length < 3 || surname.value.length > 30 ){
             error+='Surname must be between 3 and 30 characters! \n';

@@ -1,8 +1,10 @@
 package ru.itis.controller;
 
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.itis.dto.CaptchaResponseDto;
 import ru.itis.model.User;
 import ru.itis.service.EmailService;
+import ru.itis.service.SquadService;
 import ru.itis.service.UserService;
 import ru.itis.utils.Attributes;
 import ru.itis.utils.UserValidator;
@@ -30,15 +32,18 @@ public class SignUpController {
     private final UserService userService;
     private final EmailService emailService;
 
+    private final SquadService squadService;
+
     @Value("${recaptcha.secret}")
     private String secret;
 
     @Autowired
-    public SignUpController(UserValidator userValidator, RestTemplate restTemplate, UserService userService, EmailService emailService) {
+    public SignUpController(UserValidator userValidator, RestTemplate restTemplate, UserService userService, EmailService emailService, SquadService squadService) {
         this.userValidator = userValidator;
         this.restTemplate = restTemplate;
         this.userService = userService;
         this.emailService = emailService;
+        this.squadService = squadService;
     }
 
     @GetMapping
@@ -48,14 +53,15 @@ public class SignUpController {
 
     @PostMapping
     public String signUp(User user, BindingResult result, ModelMap model,
-                         @RequestParam("g-recaptcha-response") String captchaResponse){
+                         @RequestParam("g-recaptcha-response") String captchaResponse,
+                         @RequestParam(name = "squad") String squad_name){
         try {
             userValidator.validate(user, result);
-            StringBuilder error = errorChecking(captchaResponse, result);
+            StringBuilder error = errorChecking(captchaResponse, result, squad_name);
             if (error.length() == 0){
                 Attributes.addSuccessAttributes(model, "A confirmation letter will come to your mail soon!");
-                userService.signUp(user);
-                emailService.sendConfirmation(user);
+                userService.signUp(user, squad_name);
+                //emailService.sendConfirmation(user);
             }else{
                 Attributes.addErrorAttributes(model, String.valueOf(error));
             }
@@ -65,15 +71,18 @@ public class SignUpController {
         return "/signUp";
     }
 
-    private StringBuilder errorChecking(String captchaResponse, BindingResult result){
+    private StringBuilder errorChecking(String captchaResponse, BindingResult result, String squad_name){
         StringBuilder builder = new StringBuilder();
         String url = String.format(CAPTCHA_URL, secret, captchaResponse);
         CaptchaResponseDto response = restTemplate.postForObject(url, Collections.emptyList(), CaptchaResponseDto.class);
         if (!Objects.requireNonNull(response).isSuccess()) {
-            builder.append("Fill captcha! ");
+            builder.append("Fill captcha! \n");
         }
         if (result.hasErrors()) {
-            builder.append("This mail is already taken! ");
+            builder.append("This mail is already taken! \n");
+        }
+        if (!squadService.findByName(squad_name).isPresent()){
+            builder.append("There is no such group. Contact support to create it.");
         }
         return builder;
     }

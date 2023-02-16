@@ -23,9 +23,6 @@ public class User extends BaseEntity{
     @Column(name = "patronymic")
     private String patronymic;
 
-    @Column(name = "squad")
-    private String squad;
-
     @Column(name = "email")
     private String email;
 
@@ -34,6 +31,10 @@ public class User extends BaseEntity{
 
     @Column(name = "token", length = 500)
     private String token;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "squad_id", referencedColumnName = "id")
+    private Squad squad_id;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "state_id", referencedColumnName = "id")

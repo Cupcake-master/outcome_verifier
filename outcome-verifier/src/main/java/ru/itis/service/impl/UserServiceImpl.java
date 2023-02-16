@@ -1,10 +1,13 @@
 package ru.itis.service.impl;
 
+import liquibase.pro.packaged.D;
 import ru.itis.model.Role;
+import ru.itis.model.Squad;
 import ru.itis.model.State;
 import ru.itis.model.User;
 import ru.itis.repository.UserRepository;
 import ru.itis.service.RoleService;
+import ru.itis.service.SquadService;
 import ru.itis.service.StateService;
 import ru.itis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +26,15 @@ public class UserServiceImpl implements UserService {
     private final RoleService roleService;
     private final PasswordEncoder passwordEncoder;
 
+    private final SquadService squadService;
     private final StateService stateService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, RoleService roleService, PasswordEncoder passwordEncoder, StateService stateService) {
+    public UserServiceImpl(UserRepository userRepository, RoleService roleService, PasswordEncoder passwordEncoder, SquadService squadService, StateService stateService) {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
+        this.squadService = squadService;
         this.stateService = stateService;
     }
 
@@ -44,15 +49,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void signUp(User user) {
+    public void signUp(User user, String squad_name) {
         Optional<Role> roleUser = roleService.findByName("ROLE_STUDENT");
-        roleUser.ifPresent(role -> user.setRoles(Collections.singletonList(role)));
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        Optional<State> state = stateService.findByName("NOT_ACTIVE");
-        user.setState(state.get());
-        user.setCreated(new Date());
-        user.setUpdated(new Date());
         user.setToken(generateNewToken());
+        user.setUpdated(new Date());
+        user.setCreated(new Date());
+        roleUser.ifPresent(role -> user.setRoles(Collections.singletonList(role)));
+        stateService.findByName("NOT_ACTIVE").ifPresent(user::setState);
+        squadService.findByName(squad_name).ifPresent(user::setSquad_id);
         save(user);
     }
 
@@ -76,10 +81,8 @@ public class UserServiceImpl implements UserService {
     public boolean confirm(String token) {
         Optional<User> optionalUser = findByToken(token);
         if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            Optional<State> state = stateService.findByName("ACTIVE");
-            user.setState(state.get());
-            save(user);
+            stateService.findByName("ACTIVE").ifPresent(state -> optionalUser.get().setState(state));
+            save(optionalUser.get());
             return true;
         } else {
             return false;
