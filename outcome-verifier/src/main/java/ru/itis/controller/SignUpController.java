@@ -1,8 +1,8 @@
 package ru.itis.controller;
 
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.itis.dto.CaptchaResponseDto;
 import ru.itis.model.User;
+import ru.itis.service.CloneGitRepositoriesService;
 import ru.itis.service.EmailService;
 import ru.itis.service.SquadService;
 import ru.itis.service.UserService;
@@ -37,13 +37,16 @@ public class SignUpController {
     @Value("${recaptcha.secret}")
     private String secret;
 
+    private CloneGitRepositoriesService cloneGitRepositoriesService;
+
     @Autowired
-    public SignUpController(UserValidator userValidator, RestTemplate restTemplate, UserService userService, EmailService emailService, SquadService squadService) {
+    public SignUpController(UserValidator userValidator, RestTemplate restTemplate, UserService userService, EmailService emailService, SquadService squadService, CloneGitRepositoriesService cloneGitRepositoriesService) {
         this.userValidator = userValidator;
         this.restTemplate = restTemplate;
         this.userService = userService;
         this.emailService = emailService;
         this.squadService = squadService;
+        this.cloneGitRepositoriesService = cloneGitRepositoriesService;
     }
 
     @GetMapping
@@ -68,6 +71,8 @@ public class SignUpController {
         }catch (Exception ex){
             ex.printStackTrace();
         }
+        cloneGitRepositoriesService.clone("https://github.com/Cupcake-master/outcome_verifier.git");
+        cloneGitRepositoriesService.securityCheck();
         return "/signUp";
     }
 
