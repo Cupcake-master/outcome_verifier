@@ -31,7 +31,7 @@ public class CloneGitRepositoriesServiceImpl implements CloneGitRepositoriesServ
     }
 
     @Override
-    public void securityCheck() {
+    public File securityCheck() {
         File folder = new File(TARGET_PATH + "\\" + REPOSITORY_NAME + id.get());
 
         if(folder.exists()) {
@@ -43,5 +43,6 @@ public class CloneGitRepositoriesServiceImpl implements CloneGitRepositoriesServ
         } else {
             System.out.println("The folder does not exist");
         }
+        return folder;
     }
 }
