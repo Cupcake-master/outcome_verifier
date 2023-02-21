@@ -27,4 +27,11 @@ public class Task extends BaseEntity{
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Test> tests;
 
+    @Override
+    public String toString() {
+        return "Task{" +
+                "text='" + text + '\'' +
+                ", state=" + state +
+                '}';
+    }
 }

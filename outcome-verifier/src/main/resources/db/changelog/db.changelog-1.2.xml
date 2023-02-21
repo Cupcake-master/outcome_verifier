@@ -78,4 +78,60 @@
 3) вычисленную длину вывести в консоль;"/>
         </insert>
     </changeSet>
+
+    <changeSet id="1.2.3" author="bulat.bilalov">
+        <insert tableName="tests">
+            <column name="input" value="1"/>
+            <column name="output" value="0"/>
+            <column name="task_id" value="1"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="4"/>
+            <column name="output" value="1"/>
+            <column name="task_id" value="1"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="100"/>
+            <column name="output" value="24"/>
+            <column name="task_id" value="1"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="1"/>
+            <column name="output" value="1"/>
+            <column name="task_id" value="2"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="6"/>
+            <column name="output" value="8"/>
+            <column name="task_id" value="2"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="11"/>
+            <column name="output" value="89"/>
+            <column name="task_id" value="2"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="2 1 4 1 2 3 4 5 6 7 3 1"/>
+            <column name="output" value="7"/>
+            <column name="task_id" value="3"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="1 2 3 4 5 6 7 8 9 11"/>
+            <column name="output" value="10"/>
+            <column name="task_id" value="3"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="2 1 4 5 6 4 1 2 3 4 5 6"/>
+            <column name="output" value="6"/>
+            <column name="task_id" value="3"/>
+        </insert>
+    </changeSet>
 </databaseChangeLog>
