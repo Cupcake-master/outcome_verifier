@@ -39,7 +39,7 @@ public class SignInController {
         }
         List<File> files = checkGitRepositoriesService
                 .findJavaFiles("C:\\Projects\\temp\\repository-check-0");
-        files.forEach(keywordCounterService::calculateKeywordCounts);
+        keywordCounterService.calculateKeywordCounts(files);
         return "signIn";
     }
 }

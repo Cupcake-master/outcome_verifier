@@ -6,9 +6,7 @@ import com.github.javaparser.ast.body.FieldDeclaration;
 import com.github.javaparser.ast.body.VariableDeclarator;
 import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.expr.SimpleName;
-import com.github.javaparser.ast.stmt.ForStmt;
-import com.github.javaparser.ast.stmt.IfStmt;
-import com.github.javaparser.ast.stmt.WhileStmt;
+import com.github.javaparser.ast.stmt.*;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import org.springframework.stereotype.Component;
 
@@ -72,6 +70,20 @@ public class KeywordVisitor extends VoidVisitorAdapter<Void> {
         addKeyword(n.getTypeAsString());
         super.visit(n, arg);
     }
+
+    // Для 3 модуля
+    @Override
+    public void visit(TryStmt n, Void arg) {
+        addKeyword("try");
+        super.visit(n, arg);
+    }
+
+    @Override
+    public void visit(CatchClause n, Void arg) {
+        addKeyword("catch");
+        super.visit(n, arg);
+    }
+    // Для 3 модуля
 
     private void addKeyword(String identifier) {
         System.out.println(identifier);
