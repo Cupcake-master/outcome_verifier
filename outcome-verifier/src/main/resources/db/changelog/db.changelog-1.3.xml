@@ -1,0 +1,224 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1.3.0" author="bulat.bilalov">
+        <createTable tableName="java_keywords">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(26)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="created" type="TIMESTAMP" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="updated" type="TIMESTAMP" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="state_id" type="BIGINT" defaultValue="1">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+
+    <changeSet id="1.1.2" author="bulat.bilalov">
+        <insert tableName="java_keywords">
+            <column name="name" value="abstract"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="assert"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="boolean"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="break"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="byte"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="case"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="catch"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="char"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="class"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="continue"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="default"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="do"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="double"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="else"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="enum"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="extends"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="final"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="finally"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="float"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="for"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="if"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="implements"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="import"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="instanceof"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="int"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="interface"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="long"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="native"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="new"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="package"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="private"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="protected"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="public"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="return"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="short"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="static"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="strictfp"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="super"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="switch"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="synchronized"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="this"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="throw"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="throws"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="transient"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="try"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="void"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="volatile"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="while"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
