@@ -57,6 +57,9 @@ public class CheckGitRepositoriesServiceImpl implements CheckGitRepositoriesServ
                             .lines().collect(Collectors.joining("\n"));
                     if (result.equals(test.getOutput())){
                         successTest++;
+                    }else{
+                        System.err.println(test.getTask_id() + "." + test.getId() + " result: " + result + "   " + test.getInput());
+                        System.err.println("actual: " + test.getOutput());
                     }
                 }
                 String output = String.format("Task: %d - number of tests passed %d out of %d",

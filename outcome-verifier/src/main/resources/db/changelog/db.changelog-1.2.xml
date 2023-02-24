@@ -8,7 +8,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
-            <column name="text" type="VARCHAR(255)">
+            <column name="text" type="VARCHAR(1024)">
                 <constraints nullable="false"/>
             </column>
 
@@ -77,6 +77,19 @@
 2) нужно определить максимальную длину подмассива, у которого все элементы возрастают;
 3) вычисленную длину вывести в консоль;"/>
         </insert>
+
+        <insert tableName="tasks">
+            <column name="text" value="У вас есть массив строк, и вы хотите найти в этом массиве строку, которая содержит заданное слово. Если такой строки нет, программа должна выбросить исключение и вывести сообщение об ошибке: No strings containing the word you are looking for were found. Если она существует, то вывести её. Массив: [apple, banana, cherry, date, elderberry]"/>
+        </insert>
+
+        <insert tableName="tasks">
+            <column name="text" value="Нужно написать класс, представляющий собой банковский счет. Класс должен иметь два поля: баланс и номер счета. Методы для внесения и снятия денег со счета. Однако, при снятии денег с банковского счета нельзя снять больше денег, чем есть на счете. Если происходит попытка снять больше денег, чем есть на счете, программа должна выбросить исключение и вывести сообщение об ошибке: Insufficient funds in the account., в противном случае: The transaction can be performed. Программа принимает на входе два параметра: счёт и сколько хочет снять пользователь"/>
+        </insert>
+
+        <insert tableName="tasks">
+            <column name="text" value="Реализовать класс, представляющий собой заказ на покупку товаров. Класс должен иметь поля для имени заказчика, суммы заказа и статуса заказа (выполнен или нет). Также методы для изменения статуса заказа (boolean) и проверки того, был ли заказ выполнен. Однако, если попытаться изменить статус заказа, когда заказ уже выполнен, должно выбрасываться специальное исключение: OrderAlreadyFulfilledException(The order is already completed and its status cannot be changed.), в противном случае: OK"/>
+        </insert>
+
     </changeSet>
 
     <changeSet id="1.2.3" author="bulat.bilalov">
@@ -132,6 +145,72 @@
             <column name="input" value="2 1 4 5 6 4 1 2 3 4 5 6"/>
             <column name="output" value="6"/>
             <column name="task_id" value="3"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="apple"/>
+            <column name="output" value="apple"/>
+            <column name="task_id" value="4"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="orange"/>
+            <column name="output" value="No strings containing the word you are looking for were found."/>
+            <column name="task_id" value="4"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="date"/>
+            <column name="output" value="date"/>
+            <column name="task_id" value="4"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="2445 2444"/>
+            <column name="output" value="The transaction can be performed."/>
+            <column name="task_id" value="5"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="2000 2000"/>
+            <column name="output" value="The transaction can be performed."/>
+            <column name="task_id" value="5"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="111 112"/>
+            <column name="output" value="Insufficient funds in the account."/>
+            <column name="task_id" value="5"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="0 1"/>
+            <column name="output" value="Insufficient funds in the account."/>
+            <column name="task_id" value="5"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="Bulat 5000 false"/>
+            <column name="output" value="OK"/>
+            <column name="task_id" value="6"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="Timur 4000 true"/>
+            <column name="output" value="The order is already completed and its status cannot be changed."/>
+            <column name="task_id" value="6"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="Bob 3000 true"/>
+            <column name="output" value="The order is already completed and its status cannot be changed."/>
+            <column name="task_id" value="6"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="Qwerty 2000 false"/>
+            <column name="output" value="OK"/>
+            <column name="task_id" value="6"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
