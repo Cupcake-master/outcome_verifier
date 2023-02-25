@@ -1,6 +1,10 @@
 package ru.itis.utils;
 
+import com.github.javaparser.ast.CompilationUnit;
 import org.springframework.stereotype.Component;
+import ru.itis.utils.visitors.IfElseVisitor;
+import ru.itis.utils.visitors.TryCatchVisitor;
+import ru.itis.utils.visitors.VoidMethodVisitor;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,7 +14,13 @@ public class KeywordsCounter {
 
     private final Map<String, Integer> keywordCounts = new HashMap<>();
 
-    public Map<String, Integer> getKeywordCounts() {
+    public Map<String, Integer> getKeywordCounts(CompilationUnit cu) {
+        TryCatchVisitor tryCatchVisitor = new TryCatchVisitor(this);
+        IfElseVisitor ifElseVisitor = new IfElseVisitor(this);
+        VoidMethodVisitor voidMethodVisitor = new VoidMethodVisitor(this);
+        tryCatchVisitor.visit(cu, null);
+        ifElseVisitor.visit(cu, null);
+        voidMethodVisitor.visit(cu, null);
         return keywordCounts;
     }
 

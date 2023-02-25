@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.itis.utils.KeywordsCounter;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @Component
 public class TryCatchVisitor extends VoidVisitorAdapter<Void> {
     private final KeywordsCounter keywordsCounter;
