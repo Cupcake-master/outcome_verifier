@@ -2,10 +2,7 @@ package ru.itis.utils;
 
 import com.github.javaparser.ast.CompilationUnit;
 import org.springframework.stereotype.Component;
-import ru.itis.utils.visitors.IfElseVisitor;
-import ru.itis.utils.visitors.NewKeywordVisitor;
-import ru.itis.utils.visitors.TryCatchVisitor;
-import ru.itis.utils.visitors.VoidMethodVisitor;
+import ru.itis.utils.visitors.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,10 +17,14 @@ public class KeywordsCounter {
         IfElseVisitor ifElseVisitor = new IfElseVisitor(this);
         VoidMethodVisitor voidMethodVisitor = new VoidMethodVisitor(this);
         NewKeywordVisitor newKeywordVisitor= new NewKeywordVisitor(this);
+        BreakKeywordVisitor breakKeywordVisitor = new BreakKeywordVisitor(this);
+        ReturnKeywordVisitor returnKeywordVisitor = new ReturnKeywordVisitor(this);
         tryCatchVisitor.visit(cu, null);
         ifElseVisitor.visit(cu, null);
         voidMethodVisitor.visit(cu, null);
         newKeywordVisitor.visit(cu, null);
+        breakKeywordVisitor.visit(cu, null);
+        returnKeywordVisitor.visit(cu, null);
         return keywordCounts;
     }
 
