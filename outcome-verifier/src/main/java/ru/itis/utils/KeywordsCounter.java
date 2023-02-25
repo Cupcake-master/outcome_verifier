@@ -35,6 +35,7 @@ public class KeywordsCounter {
         visitors.put("implementsKeywordVisitor", new ImplementsKeywordVisitor(this));
         visitors.put("instanceOfKeywordVisitor", new InstanceOfKeywordVisitor(this));
         visitors.put("interfaceKeywordVisitor", new InterfaceKeywordVisitor(this));
+        visitors.put("abstractKeywordVisitor", new AbstractKeywordVisitor(this));
 
         visitors.values().forEach(visitor -> visitor.visit(cu, null));
         return keywordCounts;
