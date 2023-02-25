@@ -2,7 +2,6 @@ package ru.itis.utils;
 
 import com.github.javaparser.ast.CompilationUnit;
 import com.github.javaparser.ast.visitor.VoidVisitor;
-import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import org.springframework.stereotype.Component;
 import ru.itis.utils.visitors.*;
 
@@ -35,6 +34,7 @@ public class KeywordsCounter {
         visitors.put("newClassKeywordVisitor", new NewClassKeywordVisitor(this));
         visitors.put("implementsKeywordVisitor", new ImplementsKeywordVisitor(this));
         visitors.put("instanceOfKeywordVisitor", new InstanceOfKeywordVisitor(this));
+        visitors.put("interfaceKeywordVisitor", new InterfaceKeywordVisitor(this));
 
         visitors.values().forEach(visitor -> visitor.visit(cu, null));
         return keywordCounts;
