@@ -1,21 +1,22 @@
 package ru.itis.utils;
 
 import com.github.javaparser.ast.Node;
-import com.github.javaparser.ast.body.ClassOrInterfaceDeclaration;
-import com.github.javaparser.ast.body.FieldDeclaration;
-import com.github.javaparser.ast.body.VariableDeclarator;
+import com.github.javaparser.ast.body.*;
 import com.github.javaparser.ast.expr.NameExpr;
 import com.github.javaparser.ast.expr.SimpleName;
 import com.github.javaparser.ast.stmt.*;
+import com.github.javaparser.ast.type.ClassOrInterfaceType;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import com.github.javaparser.ast.type.ReferenceType;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
 public class KeywordVisitor extends VoidVisitorAdapter<Void> {
-    private Map<String, Integer> keywordCounts = new HashMap<>();
+    private final Map<String, Integer> keywordCounts = new HashMap<>();
 
     public Map<String, Integer> getKeywordCounts() {
         return keywordCounts;
@@ -71,18 +72,76 @@ public class KeywordVisitor extends VoidVisitorAdapter<Void> {
         super.visit(n, arg);
     }
 
-    // Для 3 модуля
+    // Для 2 модуля
     @Override
-    public void visit(TryStmt n, Void arg) {
-        addKeyword("try");
+    public void visit(FieldDeclaration n, Void arg) {
+        if (n.isPrivate()) {
+            addKeyword("private");
+        } else if (n.isProtected()) {
+            addKeyword("protected");
+        } else if (n.isPublic()) {
+            addKeyword("public");
+        }
         super.visit(n, arg);
     }
 
     @Override
-    public void visit(CatchClause n, Void arg) {
-        addKeyword("catch");
+    public void visit(MethodDeclaration n, Void arg) {
+        if (n.isPrivate()) {
+            addKeyword("private");
+        } else if (n.isProtected()) {
+            addKeyword("protected");
+        } else if (n.isPublic()) {
+            addKeyword("public");
+        }
         super.visit(n, arg);
     }
+
+    @Override
+    public void visit(ConstructorDeclaration n, Void arg) {
+        if (n.isPrivate()) {
+            addKeyword("private");
+        } else if (n.isProtected()) {
+            addKeyword("protected");
+        } else if (n.isPublic()) {
+            addKeyword("public");
+        }
+        super.visit(n, arg);
+    }
+
+
+    // Для 2 модуля
+
+
+    // Для 3 модуля
+
+    @Override
+    public void visit(ThrowStmt n, Void arg) {
+        addKeyword("throw");
+        super.visit(n, arg);
+    }
+
+    @Override
+    public void visit(ClassOrInterfaceDeclaration n, Void arg) {
+        if (n.getExtendedTypes().size() > 0) {
+            addKeyword("extends");
+        }
+        if (n.isInterface()) {
+            for (ClassOrInterfaceType extendsType : n.getExtendedTypes()) {
+                addKeyword("extends");
+            }
+        }
+        super.visit(n, arg);
+    }
+
+    @Override
+    public void visit(ClassOrInterfaceType n, Void arg) {
+        if (n.getName().asString().equals("extends")) {
+            addKeyword("extends");
+        }
+        super.visit(n, arg);
+    }
+
     // Для 3 модуля
 
     private void addKeyword(String identifier) {

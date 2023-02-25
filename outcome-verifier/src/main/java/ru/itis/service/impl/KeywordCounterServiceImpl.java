@@ -2,9 +2,13 @@ package ru.itis.service.impl;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itis.service.KeywordCounterService;
 import ru.itis.utils.KeywordVisitor;
+import ru.itis.utils.KeywordsCounter;
+import ru.itis.utils.visitors.IfElseVisitor;
+import ru.itis.utils.visitors.TryCatchVisitor;
 
 import java.io.File;
 import java.util.HashMap;
@@ -15,17 +19,29 @@ import java.util.Map;
 public class KeywordCounterServiceImpl implements KeywordCounterService {
 
     private final JavaParser javaParser = new JavaParser();
+    private final KeywordsCounter keywordsCounter;
+
+    @Autowired
+    public KeywordCounterServiceImpl(KeywordsCounter keywordsCounter) {
+        this.keywordsCounter = keywordsCounter;
+    }
 
     @Override
     public Map<String, Integer> calculateKeywordCounts(List<File> files) {
         Map<String, Integer> result = new HashMap<>();
         for (File file: files) {
             Map<String, Integer> keywordCounts;
+            Map<String, Integer> keywordCounts1;
             try {
                 CompilationUnit cu = javaParser.parse(file).getResult().get();
                 KeywordVisitor visitor = new KeywordVisitor();
+                TryCatchVisitor tryCatchVisitor = new TryCatchVisitor(keywordsCounter);
+                IfElseVisitor ifElseVisitor = new IfElseVisitor(keywordsCounter);
                 visitor.visit(cu, null);
+                tryCatchVisitor.visit(cu, null);
+                ifElseVisitor.visit(cu, null);
                 keywordCounts = visitor.getKeywordCounts();
+                keywordCounts1 = keywordsCounter.getKeywordCounts();
                 joinTwoHashMap(result, keywordCounts);
             }catch (Exception ex){
                 ex.printStackTrace();
