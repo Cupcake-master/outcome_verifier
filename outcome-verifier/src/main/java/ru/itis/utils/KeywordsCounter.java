@@ -1,11 +1,13 @@
 package ru.itis.utils;
 
 import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.visitor.VoidVisitor;
 import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import org.springframework.stereotype.Component;
 import ru.itis.utils.visitors.*;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Component
@@ -14,40 +16,29 @@ public class KeywordsCounter {
     private final Map<String, Integer> keywordCounts = new HashMap<>();
 
     public Map<String, Integer> getKeywordCounts(CompilationUnit cu) {
-        TryCatchVisitor tryCatchVisitor = new TryCatchVisitor(this);
-        IfElseKeywordVisitor ifElseKeywordVisitor = new IfElseKeywordVisitor(this);
-        VoidMethodVisitor voidMethodVisitor = new VoidMethodVisitor(this);
-        NewKeywordVisitor newKeywordVisitor= new NewKeywordVisitor(this);
-        BreakKeywordVisitor breakKeywordVisitor = new BreakKeywordVisitor(this);
-        ReturnKeywordVisitor returnKeywordVisitor = new ReturnKeywordVisitor(this);
-        ForKeywordVisitor forKeywordVisitor = new ForKeywordVisitor(this);
-        DoKeywordVisitor doKeywordVisitor = new DoKeywordVisitor(this);
-        WhileKeywordVisitor whileKeywordVisitor = new WhileKeywordVisitor(this);
-        CaseKeywordVisitor caseKeywordVisitor = new CaseKeywordVisitor(this);
-        ContinueKeywordVisitor continueKeywordVisitor = new ContinueKeywordVisitor(this);
-        SwitchKeywordVisitor switchKeywordVisitor = new SwitchKeywordVisitor(this);
-        FinalKeywordVisitor finalKeywordVisitor = new FinalKeywordVisitor(this);
-        StaticKeywordVisitor staticKeywordVisitor = new StaticKeywordVisitor(this);
-        AccessModifierKeywordVisitor accessModifierKeywordVisitor = new AccessModifierKeywordVisitor(this);
-        NewClassKeywordVisitor newClassKeywordVisitor = new NewClassKeywordVisitor(this);
-        ImplementsKeywordVisitor implementsKeywordVisitor = new ImplementsKeywordVisitor(this);
-        tryCatchVisitor.visit(cu, null);
-        ifElseKeywordVisitor.visit(cu, null);
-        voidMethodVisitor.visit(cu, null);
-        newKeywordVisitor.visit(cu, null);
-        breakKeywordVisitor.visit(cu, null);
-        returnKeywordVisitor.visit(cu, null);
-        forKeywordVisitor.visit(cu, null);
-        doKeywordVisitor.visit(cu, null);
-        whileKeywordVisitor.visit(cu, null);
-        caseKeywordVisitor.visit(cu, null);
-        continueKeywordVisitor.visit(cu, null);
-        switchKeywordVisitor.visit(cu, null);
-        finalKeywordVisitor.visit(cu, null);
-        staticKeywordVisitor.visit(cu, null);
-        accessModifierKeywordVisitor.visit(cu, null);
-        newClassKeywordVisitor.visit(cu, null);
-        implementsKeywordVisitor.visit(cu, null);
+        Map<String, VoidVisitor<Void>> visitors = new LinkedHashMap<>();
+        visitors.put("tryCatchVisitor", new TryCatchVisitor(this));
+        visitors.put("ifElseKeywordVisitor", new IfElseKeywordVisitor(this));
+        visitors.put("voidMethodVisitor", new VoidMethodVisitor(this));
+        visitors.put("newKeywordVisitor", new NewKeywordVisitor(this));
+        visitors.put("breakKeywordVisitor", new BreakKeywordVisitor(this));
+        visitors.put("returnKeywordVisitor", new ReturnKeywordVisitor(this));
+        visitors.put("forKeywordVisitor", new ForKeywordVisitor(this));
+        visitors.put("doKeywordVisitor", new DoKeywordVisitor(this));
+        visitors.put("whileKeywordVisitor", new WhileKeywordVisitor(this));
+        visitors.put("caseKeywordVisitor", new CaseKeywordVisitor(this));
+        visitors.put("continueKeywordVisitor", new ContinueKeywordVisitor(this));
+        visitors.put("switchKeywordVisitor", new SwitchKeywordVisitor(this));
+        visitors.put("finalKeywordVisitor", new FinalKeywordVisitor(this));
+        visitors.put("staticKeywordVisitor", new StaticKeywordVisitor(this));
+        visitors.put("accessModifierKeywordVisitor", new AccessModifierKeywordVisitor(this));
+        visitors.put("newClassKeywordVisitor", new NewClassKeywordVisitor(this));
+        visitors.put("implementsKeywordVisitor", new ImplementsKeywordVisitor(this));
+        visitors.put("instanceOfKeywordVisitor", new InstanceOfKeywordVisitor(this));
+
+        for (VoidVisitor<Void> visitor : visitors.values()) {
+            visitor.visit(cu, null);
+        }
         return keywordCounts;
     }
 
