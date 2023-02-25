@@ -38,6 +38,11 @@ public class KeywordsCounter {
         visitors.put("abstractKeywordVisitor", new AbstractKeywordVisitor(this));
         visitors.put("extendsKeywordVisitor", new ExtendsKeywordVisitor(this));
         visitors.put("enumKeywordVisitor", new EnumKeywordVisitor(this));
+        visitors.put("superKeywordVisitor", new SuperKeywordVisitor(this));
+        visitors.put("thisKeywordVisitor", new ThisKeywordVisitor(this));
+        visitors.put("finallyKeywordVisitor", new FinallyKeywordVisitor(this));
+        visitors.put("throwKeywordVisitor", new ThrowKeywordVisitor(this));
+        visitors.put("throwsKeywordVisitor", new ThrowsKeywordVisitor(this));
 
         visitors.values().forEach(visitor -> visitor.visit(cu, null));
         return keywordCounts;

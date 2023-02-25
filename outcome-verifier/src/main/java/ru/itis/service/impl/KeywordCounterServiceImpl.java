@@ -31,6 +31,7 @@ public class KeywordCounterServiceImpl implements KeywordCounterService {
             try {
                 CompilationUnit cu = javaParser.parse(file).getResult().get();
                 keywordCounts = keywordsCounter.getKeywordCounts(cu);
+                cu = null;
                 joinTwoHashMap(result, keywordCounts);
             }catch (Exception ex){
                 ex.printStackTrace();
