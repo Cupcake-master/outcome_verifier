@@ -5,7 +5,6 @@ import com.github.javaparser.ast.CompilationUnit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.itis.service.KeywordCounterService;
-import ru.itis.utils.KeywordVisitor;
 import ru.itis.utils.KeywordsCounter;
 
 import java.io.File;
@@ -29,13 +28,9 @@ public class KeywordCounterServiceImpl implements KeywordCounterService {
         Map<String, Integer> result = new HashMap<>();
         for (File file: files) {
             Map<String, Integer> keywordCounts;
-            Map<String, Integer> keywordCounts1;
             try {
                 CompilationUnit cu = javaParser.parse(file).getResult().get();
-                KeywordVisitor visitor = new KeywordVisitor();
-                visitor.visit(cu, null);
-                keywordCounts = visitor.getKeywordCounts();
-                keywordCounts1 = keywordsCounter.getKeywordCounts(cu);
+                keywordCounts = keywordsCounter.getKeywordCounts(cu);
                 joinTwoHashMap(result, keywordCounts);
             }catch (Exception ex){
                 ex.printStackTrace();
