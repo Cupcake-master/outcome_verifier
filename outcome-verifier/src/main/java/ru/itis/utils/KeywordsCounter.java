@@ -25,6 +25,8 @@ public class KeywordsCounter {
         CaseKeywordVisitor caseKeywordVisitor = new CaseKeywordVisitor(this);
         ContinueKeywordVisitor continueKeywordVisitor = new ContinueKeywordVisitor(this);
         SwitchKeywordVisitor switchKeywordVisitor = new SwitchKeywordVisitor(this);
+        FinalKeywordVisitor finalKeywordVisitor = new FinalKeywordVisitor(this);
+        StaticKeywordVisitor staticKeywordVisitor = new StaticKeywordVisitor(this)
         tryCatchVisitor.visit(cu, null);
         ifElseKeywordVisitor.visit(cu, null);
         voidMethodVisitor.visit(cu, null);
@@ -37,6 +39,8 @@ public class KeywordsCounter {
         caseKeywordVisitor.visit(cu, null);
         continueKeywordVisitor.visit(cu, null);
         switchKeywordVisitor.visit(cu, null);
+        finalKeywordVisitor.visit(cu, null);
+        staticKeywordVisitor.visit(cu, null);
         return keywordCounts;
     }
 
