@@ -19,12 +19,16 @@ public class KeywordsCounter {
         NewKeywordVisitor newKeywordVisitor= new NewKeywordVisitor(this);
         BreakKeywordVisitor breakKeywordVisitor = new BreakKeywordVisitor(this);
         ReturnKeywordVisitor returnKeywordVisitor = new ReturnKeywordVisitor(this);
+        ForKeywordVisitor forKeywordVisitor = new ForKeywordVisitor(this);
+        DoKeywordVisitor doKeywordVisitor = new DoKeywordVisitor(this);
         tryCatchVisitor.visit(cu, null);
         ifElseVisitor.visit(cu, null);
         voidMethodVisitor.visit(cu, null);
         newKeywordVisitor.visit(cu, null);
         breakKeywordVisitor.visit(cu, null);
         returnKeywordVisitor.visit(cu, null);
+        forKeywordVisitor.visit(cu, null);
+        doKeywordVisitor.visit(cu, null);
         return keywordCounts;
     }
 
