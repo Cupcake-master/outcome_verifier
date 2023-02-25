@@ -14,21 +14,29 @@ public class KeywordsCounter {
 
     public Map<String, Integer> getKeywordCounts(CompilationUnit cu) {
         TryCatchVisitor tryCatchVisitor = new TryCatchVisitor(this);
-        IfElseVisitor ifElseVisitor = new IfElseVisitor(this);
+        IfElseKeywordVisitor ifElseKeywordVisitor = new IfElseKeywordVisitor(this);
         VoidMethodVisitor voidMethodVisitor = new VoidMethodVisitor(this);
         NewKeywordVisitor newKeywordVisitor= new NewKeywordVisitor(this);
         BreakKeywordVisitor breakKeywordVisitor = new BreakKeywordVisitor(this);
         ReturnKeywordVisitor returnKeywordVisitor = new ReturnKeywordVisitor(this);
         ForKeywordVisitor forKeywordVisitor = new ForKeywordVisitor(this);
         DoKeywordVisitor doKeywordVisitor = new DoKeywordVisitor(this);
+        WhileKeywordVisitor whileKeywordVisitor = new WhileKeywordVisitor(this);
+        CaseKeywordVisitor caseKeywordVisitor = new CaseKeywordVisitor(this);
+        ContinueKeywordVisitor continueKeywordVisitor = new ContinueKeywordVisitor(this);
+        SwitchKeywordVisitor switchKeywordVisitor = new SwitchKeywordVisitor(this);
         tryCatchVisitor.visit(cu, null);
-        ifElseVisitor.visit(cu, null);
+        ifElseKeywordVisitor.visit(cu, null);
         voidMethodVisitor.visit(cu, null);
         newKeywordVisitor.visit(cu, null);
         breakKeywordVisitor.visit(cu, null);
         returnKeywordVisitor.visit(cu, null);
         forKeywordVisitor.visit(cu, null);
         doKeywordVisitor.visit(cu, null);
+        whileKeywordVisitor.visit(cu, null);
+        caseKeywordVisitor.visit(cu, null);
+        continueKeywordVisitor.visit(cu, null);
+        switchKeywordVisitor.visit(cu, null);
         return keywordCounts;
     }
 

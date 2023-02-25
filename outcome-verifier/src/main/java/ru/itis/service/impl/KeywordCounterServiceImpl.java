@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import ru.itis.service.KeywordCounterService;
 import ru.itis.utils.KeywordVisitor;
 import ru.itis.utils.KeywordsCounter;
-import ru.itis.utils.visitors.IfElseVisitor;
-import ru.itis.utils.visitors.TryCatchVisitor;
 
 import java.io.File;
 import java.util.HashMap;
