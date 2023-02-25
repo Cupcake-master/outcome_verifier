@@ -3,6 +3,7 @@ package ru.itis.utils;
 import com.github.javaparser.ast.CompilationUnit;
 import org.springframework.stereotype.Component;
 import ru.itis.utils.visitors.IfElseVisitor;
+import ru.itis.utils.visitors.NewKeywordVisitor;
 import ru.itis.utils.visitors.TryCatchVisitor;
 import ru.itis.utils.visitors.VoidMethodVisitor;
 
@@ -18,9 +19,11 @@ public class KeywordsCounter {
         TryCatchVisitor tryCatchVisitor = new TryCatchVisitor(this);
         IfElseVisitor ifElseVisitor = new IfElseVisitor(this);
         VoidMethodVisitor voidMethodVisitor = new VoidMethodVisitor(this);
+        NewKeywordVisitor newKeywordVisitor= new NewKeywordVisitor(this);
         tryCatchVisitor.visit(cu, null);
         ifElseVisitor.visit(cu, null);
         voidMethodVisitor.visit(cu, null);
+        newKeywordVisitor.visit(cu, null);
         return keywordCounts;
     }
 
