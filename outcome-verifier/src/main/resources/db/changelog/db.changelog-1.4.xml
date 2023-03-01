@@ -1,0 +1,48 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="1.4.0" author="bulat.bilalov">
+        <createTable tableName="repositories">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="name" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="surname" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="patronymic" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="git_path" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="storage_path" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="squad_id" type="BIGINT">
+                <constraints nullable="true" foreignKeyName="fk_repository_squad_id" references="squads(id)"/>
+            </column>
+
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="true" foreignKeyName="fk_repository_user_id" references="users(id)"/>
+            </column>
+
+            <column name="created" type="TIMESTAMP" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="comment" type="VARCHAR(500)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
