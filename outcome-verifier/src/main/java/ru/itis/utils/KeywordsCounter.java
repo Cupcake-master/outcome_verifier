@@ -43,6 +43,10 @@ public class KeywordsCounter {
         visitors.put("finallyKeywordVisitor", new FinallyKeywordVisitor(this));
         visitors.put("throwKeywordVisitor", new ThrowKeywordVisitor(this));
         visitors.put("throwsKeywordVisitor", new ThrowsKeywordVisitor(this));
+        visitors.put("listCollectionVisitor", new ListCollectionVisitor(this));
+        visitors.put("queueCollectionVisitor", new QueueCollectionVisitor(this));
+        visitors.put("setCollectionVisitor", new SetCollectionVisitor(this));
+        visitors.put("mapCollectionVisitor", new MapCollectionVisitor(this));
 
         visitors.values().forEach(visitor -> visitor.visit(cu, null));
         return keywordCounts;
@@ -103,6 +107,10 @@ public class KeywordsCounter {
             case "void":
             case "volatile":
             case "while":
+            case "List":
+            case "Queue":
+            case "Set":
+            case "Map":
                 Integer count = keywordCounts.get(identifier);
                 if (count == null) {
                     count = 0;
