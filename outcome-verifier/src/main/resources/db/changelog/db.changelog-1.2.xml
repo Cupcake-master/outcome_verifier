@@ -90,6 +90,13 @@
             <column name="text" value="Реализовать класс, представляющий собой заказ на покупку товаров. Класс должен иметь поля для имени заказчика, суммы заказа и статуса заказа (выполнен или нет). Также методы для изменения статуса заказа (boolean) и проверки того, был ли заказ выполнен. Однако, если попытаться изменить статус заказа, когда заказ уже выполнен, должно выбрасываться специальное исключение: OrderAlreadyFulfilledException(The order is already completed and its status cannot be changed.), в противном случае: OK"/>
         </insert>
 
+        <insert tableName="tasks">
+            <column name="text" value="Cортировки списка студентов по их среднему баллу. Класс Student должен содержать имя и средний балл."/>
+        </insert>
+
+        <insert tableName="tasks">
+            <column name="text" value="Задача подсчета количества различных слов в тексте"/>
+        </insert>
     </changeSet>
 
     <changeSet id="1.2.3" author="bulat.bilalov">
@@ -211,6 +218,42 @@
             <column name="input" value="Qwerty 2000 false"/>
             <column name="output" value="OK"/>
             <column name="task_id" value="6"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="Alice 3.5 Bob 4.0 Charlie 3.8 David 3.2"/>
+            <column name="output" value="Bob 4.0 Charlie 3.8 Alice 3.5 David 3.2 "/>
+            <column name="task_id" value="7"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="Bob 5.0 Alice 4.0"/>
+            <column name="output" value="Bob 5.0 Alice 4.0 "/>
+            <column name="task_id" value="7"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="Alice 3.5 Bob 4.0 David 3.2 Bulat 3.0"/>
+            <column name="output" value="Bob 4.0 Alice 3.5 David 3.2 Bulat 3.0 "/>
+            <column name="task_id" value="7"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="Bob 3.5"/>
+            <column name="output" value="Bob 3.5 "/>
+            <column name="task_id" value="7"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="This is some sample text with repeated words. This text is used to demonstrate the word counter program."/>
+            <column name="output" value="15"/>
+            <column name="task_id" value="8"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="This text is used to demonstrate the word counter program. It is ok"/>
+            <column name="output" value="12"/>
+            <column name="task_id" value="8"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

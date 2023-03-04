@@ -69,7 +69,6 @@ public class CheckGitRepositoriesServiceImpl implements CheckGitRepositoriesServ
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        System.out.println(tests);
     }
 
     private Task findTaskByFile(List<Task> tasks, File file){
