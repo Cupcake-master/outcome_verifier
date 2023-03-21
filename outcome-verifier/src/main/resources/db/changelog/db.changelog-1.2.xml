@@ -97,6 +97,20 @@
         <insert tableName="tasks">
             <column name="text" value="Задача подсчета количества различных слов в тексте"/>
         </insert>
+
+        <insert tableName="tasks">
+            <column name="text" value="Дан массив целых чисел. Напишите программу на Java, которая принимает на вход массив и возвращает новый массив, содержащий удвоенные значения исходного массива. Для реализации программы используйте класс Map."/>
+        </insert>
+
+        <insert tableName="tasks">
+            <column name="text" value="Создайте класс Dog для представления собаки. Класс должен содержать поля для имени, возраста и породы собаки, а также методы для получения и установки значений этих полей. Также класс должен содержать метод, который возвращает строку с описанием собаки, содержащую ее имя, возраст и породу."/>
+        </insert>
+
+        <insert tableName="tasks">
+            <column name="text" value="Создайте класс Animal для представления животного. Класс должен содержать поля для имени, возраста и веса животного, а также методы для получения и установки значений этих полей. Также класс должен содержать метод, который возвращает строку с описанием животного, содержащую его имя, возраст и вес.
+
+Создайте класс Cat, который наследует класс Animal и добавляет новое поле - породу. Класс Cat должен содержать метод для получения и установки значения породы, а также переопределять метод getDescription класса Animal, чтобы он возвращал строку с описанием кота, содержащую его имя, возраст, вес и породу."/>
+        </insert>
     </changeSet>
 
     <changeSet id="1.2.3" author="bulat.bilalov">
@@ -254,6 +268,78 @@
             <column name="input" value="This text is used to demonstrate the word counter program. It is ok"/>
             <column name="output" value="12"/>
             <column name="task_id" value="8"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="1 2 3 4 5"/>
+            <column name="output" value="[2, 4, 6, 8, 10]"/>
+            <column name="task_id" value="9"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="0 -2 5 7 -9 10"/>
+            <column name="output" value="[0, -4, 10, 14, -18, 20]"/>
+            <column name="task_id" value="9"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="100 200 300 400 500 600 700 800 900 1000"/>
+            <column name="output" value="[200, 400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000]"/>
+            <column name="task_id" value="9"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="-3 -6 -9 -12 -15"/>
+            <column name="output" value="[-6, -12, -18, -24, -30]"/>
+            <column name="task_id" value="9"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="Rex 2 Yorkshire_Terrier"/>
+            <column name="output" value="Name of the dog: Rex, age: 2 года, breed: Yorkshire_Terrier"/>
+            <column name="task_id" value="10"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="Bobik 5 Labrador"/>
+            <column name="output" value="Name of the dog: Bobik, age: 5 лет, breed: Labrador"/>
+            <column name="task_id" value="10"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="Max 1 German_Shepherd"/>
+            <column name="output" value="Name of the dog: Max, age: 1 год, breed: German_Shepherd"/>
+            <column name="task_id" value="10"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="Ball 3 Poodles"/>
+            <column name="output" value="Name of the dog: Ball, age: 3 года, breed: Poodles"/>
+            <column name="task_id" value="10"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="animal Carrot_Top 3 4.5"/>
+            <column name="output" value="An animal named Carrot_Top, age 3 года, weight 4.5 kg"/>
+            <column name="task_id" value="11"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="cat Barsik 2 3.2 Scottish_lop blue"/>
+            <column name="output" value="A cat named Barsik, age 2, weight 3.2 kg, breed Scottish_lop, color blue"/>
+            <column name="task_id" value="11"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="cat Murzyk 5 5.1 Persian yellow"/>
+            <column name="output" value="A cat named Murzyk, age 5, weight 5.1 kg, breed Persian, color yellow"/>
+            <column name="task_id" value="11"/>
+        </insert>
+
+        <insert tableName="tests">
+            <column name="input" value="cat Vaska 1 2.7 British red"/>
+            <column name="output" value="A cat named Vaska, age 1, weight 2.7 kg, breed British, color red"/>
+            <column name="task_id" value="11"/>
         </insert>
     </changeSet>
 </databaseChangeLog>

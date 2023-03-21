@@ -12,6 +12,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @Service
@@ -67,15 +69,24 @@ public class CheckGitRepositoriesServiceImpl implements CheckGitRepositoriesServ
                 System.out.println(output);
             }
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
     private Task findTaskByFile(List<Task> tasks, File file){
         int indexEnd = file.getName().indexOf('.');
         String nameFile = file.getName().substring(0, indexEnd);
-        long numberTask = Long.parseLong(String.valueOf(nameFile.charAt(nameFile.length() - 1)));
+        long numberTask = extractNumberFromFileName(nameFile);
         return tasks.stream().filter(x -> x.getId().equals(numberTask)).findFirst().orElse(null);
+    }
+
+    private static int extractNumberFromFileName(String fileName) {
+        Pattern pattern = Pattern.compile("Task_(\\d+)");
+        Matcher matcher = pattern.matcher(fileName);
+        if (matcher.find()) {
+            return Integer.parseInt(matcher.group(1));
+        }
+        return 0;
     }
 
     private Process runConsoleCommand(String command, File pathFile){
