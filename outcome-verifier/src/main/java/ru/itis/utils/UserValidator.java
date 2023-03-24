@@ -1,22 +1,22 @@
 package ru.itis.utils;
 
 import ru.itis.model.User;
-import ru.itis.service.SquadService;
-import ru.itis.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
+import ru.itis.service.SquadServiceImpl;
+import ru.itis.service.UserServiceImpl;
 
 @Component
 public class UserValidator implements Validator {
 
-    private final UserService userService;
+    private final UserServiceImpl userService;
 
-    private final SquadService squadService;
+    private final SquadServiceImpl squadService;
 
     @Autowired
-    public UserValidator(UserService userService, SquadService squadService) {
+    public UserValidator(UserServiceImpl userService, SquadServiceImpl squadService) {
         this.userService = userService;
         this.squadService = squadService;
     }

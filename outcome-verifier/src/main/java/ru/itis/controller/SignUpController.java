@@ -2,11 +2,7 @@ package ru.itis.controller;
 
 import ru.itis.dto.CaptchaResponseDto;
 import ru.itis.model.User;
-import ru.itis.service.CheckGitRepositoriesService;
-import ru.itis.service.CloneGitRepositoriesService;
-import ru.itis.service.EmailService;
-import ru.itis.service.SquadService;
-import ru.itis.service.UserService;
+import ru.itis.service.*;
 import ru.itis.utils.Attributes;
 import ru.itis.utils.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,20 +28,23 @@ public class SignUpController {
 
     private final UserValidator userValidator;
     private final RestTemplate restTemplate;
-    private final UserService userService;
-    private final EmailService emailService;
+    private final UserServiceImpl userService;
+    private final EmailServiceImpl emailService;
 
-    private final SquadService squadService;
+    private final SquadServiceImpl squadService;
 
     @Value("${recaptcha.secret}")
     private String secret;
 
-    private CloneGitRepositoriesService cloneGitRepositoriesService;
+    private CloneGitRepositoriesServiceImpl cloneGitRepositoriesService;
 
-    private CheckGitRepositoriesService checkGitRepositoriesService;
+    private CheckGitRepositoriesServiceImpl checkGitRepositoriesService;
 
     @Autowired
-    public SignUpController(UserValidator userValidator, RestTemplate restTemplate, UserService userService, EmailService emailService, SquadService squadService, CloneGitRepositoriesService cloneGitRepositoriesService, CheckGitRepositoriesService checkGitRepositoriesService) {
+    public SignUpController(UserValidator userValidator, RestTemplate restTemplate,
+                            UserServiceImpl userService, EmailServiceImpl emailService,
+                            SquadServiceImpl squadService, CloneGitRepositoriesServiceImpl cloneGitRepositoriesService,
+                            CheckGitRepositoriesServiceImpl checkGitRepositoriesService) {
         this.userValidator = userValidator;
         this.restTemplate = restTemplate;
         this.userService = userService;
