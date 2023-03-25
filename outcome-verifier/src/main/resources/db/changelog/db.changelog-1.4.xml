@@ -45,4 +45,28 @@
             </column>
         </createTable>
     </changeSet>
+
+    <changeSet id="1.4.1" author="bulat.bilalov">
+        <createTable tableName="status_task">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="repository_id" type="BIGINT">
+                <constraints nullable="true" foreignKeyName="fk_status_task_repository_id" references="repositories(id)"/>
+            </column>
+
+            <column name="task_id" type="BIGINT">
+                <constraints nullable="true" foreignKeyName="fk_status_task_task_id" references="tasks(id)"/>
+            </column>
+
+            <column name="created" type="TIMESTAMP" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="is_solved" type="bool">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
 </databaseChangeLog>
