@@ -22,7 +22,18 @@
             </column>
 
             <column name="state_id" type="BIGINT" defaultValue="1">
-                <constraints nullable="false"/>
+                <constraints nullable="false" foreignKeyName="java_keywords_state_id"
+                             references="states(id)"/>
+            </column>
+
+            <column name="module_id" type="BIGINT">
+                <constraints nullable="true" foreignKeyName="java_keywords_module_id"
+                             references="modules(id)"/>
+            </column>
+
+            <column name="grade_id" type="BIGINT">
+                <constraints nullable="true" foreignKeyName="java_keywords_grade_id"
+                             references="grades(id)"/>
             </column>
         </createTable>
 
@@ -39,14 +50,20 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="boolean"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="break"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="byte"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -59,6 +76,8 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="char"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -79,6 +98,8 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="double"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -103,6 +124,8 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="float"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -127,6 +150,8 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="int"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -135,6 +160,8 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="long"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -143,6 +170,8 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="new"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -163,10 +192,14 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="return"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="short"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -211,6 +244,8 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="void"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">

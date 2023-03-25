@@ -23,6 +23,10 @@ public class Task extends BaseEntity{
     @JoinColumn(name = "state_id", referencedColumnName = "id")
     private State state;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "module_id", referencedColumnName = "id")
+    private Module module_id;
+
     @OneToMany(mappedBy = "task_id")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Test> tests;

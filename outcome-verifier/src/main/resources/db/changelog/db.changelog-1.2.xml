@@ -23,6 +23,11 @@
             <column name="state_id" type="BIGINT" defaultValue="1">
                 <constraints nullable="false"/>
             </column>
+
+            <column name="module_id" type="BIGINT">
+                <constraints nullable="true" foreignKeyName="fk_tasks_module_id"
+                             references="modules(id)"/>
+            </column>
         </createTable>
 
     </changeSet>

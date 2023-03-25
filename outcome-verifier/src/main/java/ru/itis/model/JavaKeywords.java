@@ -19,4 +19,12 @@ public class JavaKeywords extends BaseEntity{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "state_id", referencedColumnName = "id")
     private State state;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "module_id", referencedColumnName = "id")
+    private Module module_id;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "grade_id", referencedColumnName = "id")
+    private Grade grade_id;
 }
