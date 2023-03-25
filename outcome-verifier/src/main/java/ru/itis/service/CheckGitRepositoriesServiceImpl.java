@@ -35,7 +35,10 @@ public class CheckGitRepositoriesServiceImpl {
         return javaFiles;
     }
 
-    public void compileJavaFiles(List<File> files, String path, Repository repository) {
+    public Map<Boolean, List<Task>> compileJavaFiles(List<File> files, String path) {
+        List<Task> successfulTasks = new ArrayList<>();
+        List<Task> failedTasks = new ArrayList<>();
+
         List<Task> tasks = taskService.findAll();
         List<Test> tests = getAllTests(tasks);
 
@@ -46,11 +49,21 @@ public class CheckGitRepositoriesServiceImpl {
                 Task task = findTaskByFile(tasks, file);
                 List<Test> testByTask = filterTestsByTask(tests, task);
                 int successTest = runTestsAndGetSuccessCount(testByTask, file, pathFile);
+                if (successTest == testByTask.size()) {
+                    successfulTasks.add(task);
+                } else {
+                    failedTasks.add(task);
+                }
                 printResults(task, successTest, testByTask.size());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        Map<Boolean, List<Task>> result = new HashMap<>();
+        result.put(true, successfulTasks);
+        result.put(false, failedTasks);
+        return result;
     }
 
     private List<Test> getAllTests(List<Task> tasks) {

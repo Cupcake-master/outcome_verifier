@@ -64,6 +64,10 @@
                 <constraints nullable="false"/>
             </column>
 
+            <column name="updated" type="TIMESTAMP" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+
             <column name="is_solved" type="bool">
                 <constraints nullable="true"/>
             </column>
