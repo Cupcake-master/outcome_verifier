@@ -32,7 +32,7 @@ public class RepositoryServiceImpl {
         File file = cloneGitRepositoriesService.securityCheck();
         repository.setStorage_path(file.getPath());
         List<File> files = checkGitRepositoriesService.findJavaFiles(file.getPath());
-        checkGitRepositoriesService.compileJavaFiles(files, file.getPath());
+        checkGitRepositoriesService.compileJavaFiles(files, file.getPath(), repository);
         save(repository);
     }
 }
