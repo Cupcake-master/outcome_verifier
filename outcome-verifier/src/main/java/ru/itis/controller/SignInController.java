@@ -39,6 +39,6 @@ public class SignInController {
         //List<File> files = checkGitRepositoriesService
                 //.findJavaFiles("C:\\Projects\\temp\\repository-check-0");
         //keywordCounterService.calculateKeywordCounts(files);
-        return "index";
+        return "signIn";
     }
 }

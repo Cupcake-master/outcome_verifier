@@ -19,4 +19,8 @@ public class Squad extends BaseEntity{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "state_id", referencedColumnName = "id")
     private State state;
+
+    public Squad(String name) {
+        this.name = name;
+    }
 }

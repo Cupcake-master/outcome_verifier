@@ -78,14 +78,6 @@ public class SignUpController {
         }catch (Exception ex){
             ex.printStackTrace();
         }
-        cloneGitRepositoriesService.clone("https://github.com/Cupcake-master/glowing-eureka.git");
-        try {
-            File file = cloneGitRepositoriesService.securityCheck();
-            List<File> files = checkGitRepositoriesService.findJavaFiles(file.getPath());
-            checkGitRepositoriesService.compileJavaFiles(files, file.getPath());
-        }catch (Exception ex){
-            ex.printStackTrace();
-        }
         return "/signUp";
     }
 

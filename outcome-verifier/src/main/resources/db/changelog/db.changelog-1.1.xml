@@ -70,6 +70,26 @@
     </changeSet>
 
     <changeSet id="1.1.3" author="bulat.bilalov">
+        <insert tableName="users">
+            <column name="name" value="Bulat"/>
+            <column name="surname" value="Bilalov"/>
+            <column name="patronymic" value="Foatovich"/>
+            <column name="squad_id" value="6"/>
+            <column name="email" value="admin@gmail.com"/>
+            <column name="password" value="$2a$10$H2gNCHaIaXFn3TjvtEj2Fuba1vUU7GAiwPbW00pttYR.HuKrVyUY6"/>
+            <column name="state_id" value="1"/>
+            <column name="token" value="EfM1jFG8gkB3g46vwdTsqvUXEXRG6466Y3hocD1vGhqneSF3IPE1njG3xoUH0d8TtFv38tS41HNSGnntjn7pkUvULO5phtn8G34tqhCR1KkFIlFCwchC8ffR3kHdcRN7VKoMrxiqISPiNtDKSmn5xLywFehYYjhxdrgwI5WU7LKijBCC8CipEmy1uiONSVf8NncWIMFeBJenIKgTHGtINsyhPDQLpNwtp6r5GrIErX23O53yI4i1LYVkUVNndfvND0Gi5gXM7VY3FCrIJxP1GRyFQL2FOyoe284DNiQeoQmBcK3whvHUjQtT3xCy4k75kdHGw8UbW6oud8mJxUQy1GoiWgw81lwV1wsUjlqqreNSOYsvkibG6gWy7QiyRTqRGkSr1uJhd0NpK6nKQldfOlOOh0JCRgdFOwQFOHq6dvHVbuTP4Fvs5GuPTyf8brDrWWP2Q6MsjuO2Oi1bfy867P4fH1c486TGIMhNioO6ibhrlhnkkmkx"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="1.1.4" author="bulat.bilalov">
+        <insert tableName="user_roles">
+            <column name="user_id" value="1"/>
+            <column name="role_id" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet id="1.1.5" author="bulat.bilalov">
         <createTable tableName="modules">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -93,7 +113,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="1.1.4" author="bulat.bilalov">
+    <changeSet id="1.1.6" author="bulat.bilalov">
         <insert tableName="modules">
             <column name="name" value="Основы программирования на Java"/>
         </insert>
@@ -111,7 +131,7 @@
         </insert>
     </changeSet>
 
-    <changeSet id="1.1.5" author="bulat.bilalov">
+    <changeSet id="1.1.7" author="bulat.bilalov">
         <createTable tableName="grades">
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false"/>
@@ -131,7 +151,7 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="1.1.6" author="bulat.bilalov">
+    <changeSet id="1.1.8" author="bulat.bilalov">
         <insert tableName="grades">
             <column name="name" value="3"/>
         </insert>

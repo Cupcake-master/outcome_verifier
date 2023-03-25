@@ -33,7 +33,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .loginPage("/signIn")
                 .loginProcessingUrl("/signIn")
                 .usernameParameter("email")
-                .defaultSuccessUrl("/blog");
+                .defaultSuccessUrl("/index");
 
         http.logout()
                 .logoutUrl("/logout")

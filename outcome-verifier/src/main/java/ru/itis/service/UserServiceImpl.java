@@ -1,11 +1,14 @@
 package ru.itis.service;
 
+import org.springframework.security.core.AuthenticatedPrincipal;
+import org.springframework.security.core.Authentication;
 import ru.itis.model.Role;
 import ru.itis.model.User;
 import ru.itis.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import ru.itis.security.details.UserDetailsImpl;
 
 import java.util.Collections;
 import java.util.Date;
@@ -51,6 +54,12 @@ public class UserServiceImpl{
         stateService.findByName("NOT_ACTIVE").ifPresent(user::setState);
         squadService.findByName(squad_name).ifPresent(user::setSquad_id);
         save(user);
+    }
+
+    public User findUserByAuthentication(Authentication authentication){
+        User u = ((UserDetailsImpl) authentication.getPrincipal()).getUser();
+        Optional<User> userOptional = findByEmail(u.getEmail());
+        return userOptional.orElse(null);
     }
 
     private static String generateNewToken() {

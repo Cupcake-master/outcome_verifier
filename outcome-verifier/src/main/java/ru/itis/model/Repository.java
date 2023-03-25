@@ -43,7 +43,7 @@ public class Repository {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Squad user_id;
+    private User user_id;
 
     @CreatedDate
     @Column(name = "created")
