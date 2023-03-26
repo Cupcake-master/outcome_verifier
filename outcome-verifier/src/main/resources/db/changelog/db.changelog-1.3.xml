@@ -42,6 +42,8 @@
     <changeSet id="1.1.2" author="bulat.bilalov">
         <insert tableName="java_keywords">
             <column name="name" value="abstract"/>
+            <column name="module_id" value="2"/>
+            <column name="grade_id" value="3"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -57,7 +59,7 @@
         <insert tableName="java_keywords">
             <column name="name" value="break"/>
             <column name="module_id" value="1"/>
-            <column name="grade_id" value="1"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -68,10 +70,14 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="case"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="catch"/>
+            <column name="module_id" value="3"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -82,10 +88,14 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="class"/>
+            <column name="module_id" value="2"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="continue"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -94,6 +104,8 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="do"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -104,22 +116,32 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="else"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="enum"/>
+            <column name="module_id" value="2"/>
+            <column name="grade_id" value="3"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="extends"/>
+            <column name="module_id" value="3"/>
+            <column name="grade_id" value="3"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="final"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="3"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="finally"/>
+            <column name="module_id" value="3"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -130,14 +152,20 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="for"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="if"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="implements"/>
+            <column name="module_id" value="2"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -146,6 +174,8 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="instanceof"/>
+            <column name="module_id" value="2"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -156,6 +186,8 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="interface"/>
+            <column name="module_id" value="2"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -180,14 +212,20 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="private"/>
+            <column name="module_id" value="2"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="protected"/>
+            <column name="module_id" value="2"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="public"/>
+            <column name="module_id" value="2"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -204,6 +242,8 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="static"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="3"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -212,10 +252,14 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="super"/>
+            <column name="module_id" value="2"/>
+            <column name="grade_id" value="3"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="switch"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -224,14 +268,20 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="this"/>
+            <column name="module_id" value="2"/>
+            <column name="grade_id" value="3"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="throw"/>
+            <column name="module_id" value="3"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="throws"/>
+            <column name="module_id" value="3"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -240,12 +290,14 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="try"/>
+            <column name="module_id" value="3"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="void"/>
             <column name="module_id" value="1"/>
-            <column name="grade_id" value="1"/>
+            <column name="grade_id" value="3"/>
         </insert>
 
         <insert tableName="java_keywords">
@@ -254,22 +306,32 @@
 
         <insert tableName="java_keywords">
             <column name="name" value="while"/>
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="List"/>
+            <column name="module_id" value="4"/>
+            <column name="grade_id" value="1"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="Queue"/>
+            <column name="module_id" value="4"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="Set"/>
+            <column name="module_id" value="4"/>
+            <column name="grade_id" value="2"/>
         </insert>
 
         <insert tableName="java_keywords">
             <column name="name" value="Map"/>
+            <column name="module_id" value="4"/>
+            <column name="grade_id" value="3"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
