@@ -2,4 +2,33 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="1.5.0" author="bulat.bilalov">
+        <createTable tableName="count_java_keywords">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="repository_id" type="BIGINT">
+                <constraints nullable="true" foreignKeyName="fk_count_java_keywords_repository_id" references="repositories(id)"/>
+            </column>
+
+            <column name="java_keywords_id" type="BIGINT">
+                <constraints nullable="true" foreignKeyName="fk_count_java_keywords_java_keywords_id" references="tasks(id)"/>
+            </column>
+
+            <column name="created" type="TIMESTAMP" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="updated" type="TIMESTAMP" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="count" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>
