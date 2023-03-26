@@ -255,5 +255,21 @@
         <insert tableName="java_keywords">
             <column name="name" value="while"/>
         </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="List"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="Queue"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="Set"/>
+        </insert>
+
+        <insert tableName="java_keywords">
+            <column name="name" value="Map"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>
