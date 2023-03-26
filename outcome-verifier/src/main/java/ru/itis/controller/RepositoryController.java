@@ -5,11 +5,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.itis.model.Repository;
-import ru.itis.service.RepositoryServiceImpl;
-import ru.itis.service.SquadServiceImpl;
-import ru.itis.service.UserServiceImpl;
+import ru.itis.service.*;
 
+import java.io.File;
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 public class RepositoryController {
@@ -19,11 +20,20 @@ public class RepositoryController {
 
     private final SquadServiceImpl squadService;
 
+    private final CheckGitRepositoriesServiceImpl checkGitRepositoriesService;
+
+    private final KeywordCounterServiceImpl keywordCounterService;
+
+    private final CountJavaKeywordsImpl countJavaKeywords;
+
     @Autowired
-    public RepositoryController(RepositoryServiceImpl repositoryService, UserServiceImpl userService, SquadServiceImpl squadService) {
+    public RepositoryController(RepositoryServiceImpl repositoryService, UserServiceImpl userService, SquadServiceImpl squadService, CheckGitRepositoriesServiceImpl checkGitRepositoriesService, KeywordCounterServiceImpl keywordCounterService, CountJavaKeywordsImpl countJavaKeywords) {
         this.repositoryService = repositoryService;
         this.userService = userService;
         this.squadService = squadService;
+        this.checkGitRepositoriesService = checkGitRepositoriesService;
+        this.keywordCounterService = keywordCounterService;
+        this.countJavaKeywords = countJavaKeywords;
     }
 
     @GetMapping("/index")
@@ -39,6 +49,10 @@ public class RepositoryController {
                     .user_id(userService.findUserByAuthentication(authentication))
                     .build();
             repositoryService.handler(repository);
+            List<File> files = checkGitRepositoriesService
+                    .findJavaFiles(repository.getStorage_path());
+            Map<String, Integer> map = keywordCounterService.calculateKeywordCounts(files);
+            countJavaKeywords.saveCountJavaKeywordsByRepository(repository, map);
         }catch (Exception ex){
             ex.printStackTrace();
         }

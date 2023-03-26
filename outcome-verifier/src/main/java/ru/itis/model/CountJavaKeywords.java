@@ -22,5 +22,5 @@ public class CountJavaKeywords extends BaseEntity{
     private Repository repository_id;
 
     @Column(name = "count")
-    private Long count;
+    private Integer count;
 }

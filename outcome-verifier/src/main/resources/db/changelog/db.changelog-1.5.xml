@@ -14,7 +14,7 @@
             </column>
 
             <column name="java_keywords_id" type="BIGINT">
-                <constraints nullable="true" foreignKeyName="fk_count_java_keywords_java_keywords_id" references="tasks(id)"/>
+                <constraints nullable="true" foreignKeyName="fk_count_java_keywords_java_keywords_id" references="java_keywords(id)"/>
             </column>
 
             <column name="created" type="TIMESTAMP" defaultValue="now()">
