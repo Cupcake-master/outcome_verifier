@@ -31,4 +31,36 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="1.5.1" author="bulat.bilalov">
+        <createTable tableName="requirements">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="module_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_requirements_module_id" references="modules(id)"/>
+            </column>
+
+            <column name="grade_id" type="BIGINT">
+                <constraints nullable="false" foreignKeyName="fk_requirements_grade_id" references="grades(id)"/>
+            </column>
+
+            <column name="created" type="TIMESTAMP" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="updated" type="TIMESTAMP" defaultValue="now()">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="requiredNumberOfTasksSolved" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="requiredPercentageOfKeywordsUsed" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
 </databaseChangeLog>
