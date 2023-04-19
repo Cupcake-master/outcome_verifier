@@ -29,7 +29,7 @@ public class RequirementServiceImpl {
         this.keywordsService = keywordsService;
     }
 
-    public List<Requirement> findAll(){
+    public List<Requirement> findAll() {
         return requirementRepository.findAll();
     }
 
@@ -50,13 +50,18 @@ public class RequirementServiceImpl {
             List<Task> unSolvedTasksList = unsolvedTasks.stream().filter(task ->
                             task.getModule_id().getId().equals(module.getId()))
                     .collect(Collectors.toList());
-            result.setKeywordsUsed(findAllKeywordsByName(map.keySet()));
-            result.setSolvedTasks(unSolvedTasksList);
+            // FIXME: 19.04.2023
+            result.setKeywordsUsed(findAllKeywordsByName(map.keySet(), module.getId()));
+            result.setUnSolvedTasks(unSolvedTasksList);
             Grade grade = null;
             for (Grade grade1 : grades) {
                 Requirement requirement = findByModuleAndGrade(module.getId(), grade1.getId()).get();
-                if (requirement.getRequiredNumberOfTasksSolved() <= solvedTasksList.size()){
-                    grade = grade1;
+                if (requirement.getRequiredNumberOfTasksSolved() <= solvedTasksList.size()) {
+                    if (grade != null && grade.getName() > grade1.getName()) {
+                        continue;
+                    } else {
+                        grade = grade1;
+                    }
                 }
             }
             result.setGrade_id(grade);
@@ -65,17 +70,21 @@ public class RequirementServiceImpl {
         System.out.println(results);
     }
 
-    private Optional<Requirement> findByModuleAndGrade(Long module_id, Long grade_id){
+    private Optional<Requirement> findByModuleAndGrade(Long module_id, Long grade_id) {
         Module module = moduleService.findById(module_id).get();
         Grade grade = gradeService.findById(grade_id).get();
         return requirementRepository.findByModuleAndGrade(module, grade);
     }
 
-    private List<JavaKeywords> findAllKeywordsByName(Set<String> strings){
+    private List<JavaKeywords> findAllKeywordsByName(Set<String> strings, Long module_id) {
         List<JavaKeywords> javaKeywords = new ArrayList<>();
+        List<JavaKeywords> finalJavaKeywords = javaKeywords;
         strings.stream().map(keywordsService::findByName)
                 .forEachOrdered(optionalJavaKeywords ->
-                        optionalJavaKeywords.ifPresent(javaKeywords::add));
+                        optionalJavaKeywords.ifPresent(finalJavaKeywords::add));
+        javaKeywords = finalJavaKeywords.stream()
+                .filter(keyword -> keyword.getModule_id().getId().equals(module_id))
+                .collect(Collectors.toList());
         return javaKeywords;
     }
 }

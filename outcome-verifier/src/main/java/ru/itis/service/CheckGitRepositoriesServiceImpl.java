@@ -86,7 +86,7 @@ public class CheckGitRepositoriesServiceImpl {
             if (result.equals(test.getOutput())) {
                 successTest++;
             } else {
-                printError(test, result);
+                //printError(test, result);
             }
         }
         return successTest;
