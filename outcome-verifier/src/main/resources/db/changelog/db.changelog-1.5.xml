@@ -53,14 +53,100 @@
                 <constraints nullable="false"/>
             </column>
 
-            <column name="requiredNumberOfTasksSolved" type="BIGINT">
+            <column name="required_number_of_tasks_solved" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
 
-            <column name="requiredPercentageOfKeywordsUsed" type="BIGINT">
+            <column name="required_percentage_of_keywords_used" type="BIGINT">
                 <constraints nullable="false"/>
             </column>
         </createTable>
+    </changeSet>
+
+    <changeSet id="1.5.2" author="bulat.bilalov">
+        <insert tableName="requirements">
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="1"/>
+            <column name="required_number_of_tasks_solved" value="1"/>
+            <column name="required_percentage_of_keywords_used" value="25"/>
+        </insert>
+
+        <insert tableName="requirements">
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="2"/>
+            <column name="required_number_of_tasks_solved" value="2"/>
+            <column name="required_percentage_of_keywords_used" value="25"/>
+        </insert>
+
+        <insert tableName="requirements">
+            <column name="module_id" value="1"/>
+            <column name="grade_id" value="3"/>
+            <column name="required_number_of_tasks_solved" value="3"/>
+            <column name="required_percentage_of_keywords_used" value="25"/>
+        </insert>
+
+        <insert tableName="requirements">
+            <column name="module_id" value="2"/>
+            <column name="grade_id" value="1"/>
+            <column name="required_number_of_tasks_solved" value="0"/>
+            <column name="required_percentage_of_keywords_used" value="25"/>
+        </insert>
+
+        <insert tableName="requirements">
+            <column name="module_id" value="2"/>
+            <column name="grade_id" value="2"/>
+            <column name="required_number_of_tasks_solved" value="1"/>
+            <column name="required_percentage_of_keywords_used" value="25"/>
+        </insert>
+
+        <insert tableName="requirements">
+            <column name="module_id" value="2"/>
+            <column name="grade_id" value="3"/>
+            <column name="required_number_of_tasks_solved" value="2"/>
+            <column name="required_percentage_of_keywords_used" value="25"/>
+        </insert>
+
+        <insert tableName="requirements">
+            <column name="module_id" value="3"/>
+            <column name="grade_id" value="1"/>
+            <column name="required_number_of_tasks_solved" value="1"/>
+            <column name="required_percentage_of_keywords_used" value="50"/>
+        </insert>
+
+        <insert tableName="requirements">
+            <column name="module_id" value="3"/>
+            <column name="grade_id" value="2"/>
+            <column name="required_number_of_tasks_solved" value="2"/>
+            <column name="required_percentage_of_keywords_used" value="50"/>
+        </insert>
+
+        <insert tableName="requirements">
+            <column name="module_id" value="3"/>
+            <column name="grade_id" value="3"/>
+            <column name="required_number_of_tasks_solved" value="3"/>
+            <column name="required_percentage_of_keywords_used" value="50"/>
+        </insert>
+
+        <insert tableName="requirements">
+            <column name="module_id" value="4"/>
+            <column name="grade_id" value="1"/>
+            <column name="required_number_of_tasks_solved" value="1"/>
+            <column name="required_percentage_of_keywords_used" value="100"/>
+        </insert>
+
+        <insert tableName="requirements">
+            <column name="module_id" value="4"/>
+            <column name="grade_id" value="2"/>
+            <column name="required_number_of_tasks_solved" value="2"/>
+            <column name="required_percentage_of_keywords_used" value="100"/>
+        </insert>
+
+        <insert tableName="requirements">
+            <column name="module_id" value="4"/>
+            <column name="grade_id" value="3"/>
+            <column name="required_number_of_tasks_solved" value="3"/>
+            <column name="required_percentage_of_keywords_used" value="100"/>
+        </insert>
     </changeSet>
 
 </databaseChangeLog>
