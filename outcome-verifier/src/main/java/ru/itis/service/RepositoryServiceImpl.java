@@ -31,7 +31,7 @@ public class RepositoryServiceImpl {
         return repositoryRepository.save(repository);
     }
 
-    public void handler(Repository repository){
+    public Map<Boolean, List<Task>> handler(Repository repository){
         cloneGitRepositoriesService.clone(repository.getGit_path());
         File file = cloneGitRepositoriesService.securityCheck();
         repository.setStorage_path(file.getPath());
@@ -40,5 +40,6 @@ public class RepositoryServiceImpl {
                 .compileJavaFiles(files, file.getPath());
         statusTaskService.saveSolvedAndUnresolvedTasks(map, repository);
         save(repository);
+        return map;
     }
 }

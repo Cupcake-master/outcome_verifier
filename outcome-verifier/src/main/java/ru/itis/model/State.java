@@ -21,4 +21,11 @@ public class State extends BaseEntity{
 
     @OneToOne(mappedBy = "state")
     private User user;
+
+    @Override
+    public String toString() {
+        return "State{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

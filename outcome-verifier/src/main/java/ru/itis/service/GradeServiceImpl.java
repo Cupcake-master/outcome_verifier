@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import ru.itis.model.Grade;
 import ru.itis.repository.GradeRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,5 +20,9 @@ public class GradeServiceImpl{
 
     public Optional<Grade> findById(Long id){
         return gradeRepository.findById(id);
+    }
+
+    public List<Grade> findAll(){
+        return gradeRepository.findAll();
     }
 }

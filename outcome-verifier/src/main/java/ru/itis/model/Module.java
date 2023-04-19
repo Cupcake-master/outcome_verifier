@@ -19,4 +19,11 @@ public class Module extends BaseEntity{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "state_id", referencedColumnName = "id")
     private State state;
+
+    @Override
+    public String toString() {
+        return "Module{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

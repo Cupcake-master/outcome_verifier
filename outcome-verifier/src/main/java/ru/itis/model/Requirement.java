@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "requirements")
-public class Requirements extends BaseEntity{
+public class Requirement extends BaseEntity{
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "module_id", referencedColumnName = "id")

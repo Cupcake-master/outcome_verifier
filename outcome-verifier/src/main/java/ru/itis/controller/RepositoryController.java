@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import ru.itis.model.Repository;
+import ru.itis.model.Task;
 import ru.itis.service.*;
 
 import java.io.File;
@@ -26,14 +27,20 @@ public class RepositoryController {
 
     private final CountJavaKeywordsImpl countJavaKeywords;
 
+    private final RequirementServiceImpl requirementService;
+
     @Autowired
-    public RepositoryController(RepositoryServiceImpl repositoryService, UserServiceImpl userService, SquadServiceImpl squadService, CheckGitRepositoriesServiceImpl checkGitRepositoriesService, KeywordCounterServiceImpl keywordCounterService, CountJavaKeywordsImpl countJavaKeywords) {
+    public RepositoryController(RepositoryServiceImpl repositoryService, UserServiceImpl userService,
+                                SquadServiceImpl squadService, CheckGitRepositoriesServiceImpl checkGitRepositoriesService,
+                                KeywordCounterServiceImpl keywordCounterService, CountJavaKeywordsImpl countJavaKeywords,
+                                RequirementServiceImpl requirementService) {
         this.repositoryService = repositoryService;
         this.userService = userService;
         this.squadService = squadService;
         this.checkGitRepositoriesService = checkGitRepositoriesService;
         this.keywordCounterService = keywordCounterService;
         this.countJavaKeywords = countJavaKeywords;
+        this.requirementService = requirementService;
     }
 
     @GetMapping("/index")
@@ -48,11 +55,12 @@ public class RepositoryController {
                     .squad_id(squadService.findByName("11-906").get())
                     .user_id(userService.findUserByAuthentication(authentication))
                     .build();
-            repositoryService.handler(repository);
+            Map<Boolean, List<Task>> solvedAndUnsolvedTasks = repositoryService.handler(repository);
             List<File> files = checkGitRepositoriesService
                     .findJavaFiles(repository.getStorage_path());
             Map<String, Integer> map = keywordCounterService.calculateKeywordCounts(files);
             countJavaKeywords.saveCountJavaKeywordsByRepository(repository, map);
+            requirementService.checkRepositoryAgainstEvaluationCriteria(solvedAndUnsolvedTasks, map);
         }catch (Exception ex){
             ex.printStackTrace();
         }
