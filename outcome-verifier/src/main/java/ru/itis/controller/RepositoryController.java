@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import ru.itis.model.Repository;
 import ru.itis.model.Task;
 import ru.itis.service.*;
@@ -43,8 +44,13 @@ public class RepositoryController {
         this.requirementService = requirementService;
     }
 
-    @GetMapping("/index")
-    public String cloneRepository(Authentication authentication) {
+    @GetMapping("/repository")
+    public String getForm(){
+        return "repository";
+    }
+
+    @PostMapping("/repository")
+    public String cloneRepository(Authentication authentication, Repository repositoryFull) {
         try {
             Repository repository = Repository.builder()
                     .name("Bulat")
@@ -64,6 +70,6 @@ public class RepositoryController {
         }catch (Exception ex){
             ex.printStackTrace();
         }
-        return "index";
+        return "repository";
     }
 }

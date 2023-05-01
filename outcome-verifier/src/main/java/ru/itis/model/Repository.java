@@ -48,4 +48,18 @@ public class Repository {
     @CreatedDate
     @Column(name = "created")
     private Date created;
+
+    @Override
+    public String toString() {
+        return "Repository{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", comment='" + comment + '\'' +
+                ", git_path='" + git_path + '\'' +
+                ", storage_path='" + storage_path + '\'' +
+                ", created=" + created +
+                '}';
+    }
 }

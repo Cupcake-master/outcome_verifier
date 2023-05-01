@@ -74,7 +74,7 @@
 <div>
     <div class="error-head">
         <#--<img src="${rc.getContextPath()}/gif/abc.gif" alt="BulSchool">-->
-        <span>Видеокурсы по программированию</span>
+        <span>OutcomeVerifier</span>
     </div>
 </div>
 <div>
