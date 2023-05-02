@@ -19,6 +19,8 @@ public class RequirementServiceImpl {
 
     private final JavaKeywordsServiceImpl keywordsService;
 
+    private final List<Result> results = new ArrayList<>();
+
 
     @Autowired
     public RequirementServiceImpl(RequirementRepository requirementRepository, ModuleServiceImpl moduleService,
@@ -39,7 +41,6 @@ public class RequirementServiceImpl {
         List<Task> unsolvedTasks = solvedAndUnSolvedTasks.get(false);
         List<Module> modules = moduleService.findAll();
         List<Grade> grades = gradeService.findAll();
-        List<Result> results = new ArrayList<>();
         for (Module module : modules) {
             Result result = new Result();
             result.setModule_id(module);
@@ -50,7 +51,6 @@ public class RequirementServiceImpl {
             List<Task> unSolvedTasksList = unsolvedTasks.stream().filter(task ->
                             task.getModule_id().getId().equals(module.getId()))
                     .collect(Collectors.toList());
-            // FIXME: 19.04.2023
             result.setKeywordsUsed(findAllKeywordsByName(map.keySet(), module.getId()));
             result.setUnSolvedTasks(unSolvedTasksList);
             Grade grade = null;
@@ -68,6 +68,10 @@ public class RequirementServiceImpl {
             results.add(result);
         }
         System.out.println(results);
+    }
+
+    public List<Result> getResults(){
+        return results;
     }
 
     private Optional<Requirement> findByModuleAndGrade(Long module_id, Long grade_id) {

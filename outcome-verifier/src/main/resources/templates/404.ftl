@@ -84,7 +84,7 @@
     <div class="error-footer">
         <span>Ошибка</span>
         <p>Извините, произошла ошибка</p>
-        <a href="${rc.getContextPath()}/index">на главную</a>
+        <a href="${rc.getContextPath()}/repository">на главную</a>
     </div>
 </div>
 

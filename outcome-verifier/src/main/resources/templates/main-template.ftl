@@ -41,12 +41,12 @@
                     <li class="nav-item" role="presentation"><a class="nav-link"
                                                                 href="${rc.getContextPath()}/home">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                href="${rc.getContextPath()}/schedule">Schedule</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                href="${rc.getContextPath()}/admissions">Admissions</a>
+                                                                href="${rc.getContextPath()}/repository">Репозиторий</a>
                     </li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
-                                                                href="${rc.getContextPath()}/developers">Developers</a>
+                                                                href="${rc.getContextPath()}/results">Результаты</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link"
+                                                                href="${rc.getContextPath()}/developers">Разработчики</a>
                     </li>
                     <li class="nav-item" role="presentation"><a class="nav-link custom-navbar"
                                                                 href="${rc.getContextPath()}/feedback">Contact</a></li>

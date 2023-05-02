@@ -102,7 +102,7 @@
                                     class="icon ion-social-snapchat"></i></a><a
                                 href="#"><i class="icon ion-social-instagram"></i></a></div>
                 </div>
-                <p class="copyright">BulSchool © 2020</p>
+                <p class="copyright">OutcomeVerifier © 2023</p>
             </div>
         </footer>
     </div>

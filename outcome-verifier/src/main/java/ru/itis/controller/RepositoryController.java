@@ -1,5 +1,6 @@
 package ru.itis.controller;
 
+import liquibase.pro.packaged.D;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -50,17 +51,11 @@ public class RepositoryController {
     }
 
     @PostMapping("/repository")
-    public String cloneRepository(Authentication authentication, Repository repositoryFull) {
+    public String cloneRepository(Authentication authentication, Repository repository) {
         try {
-            Repository repository = Repository.builder()
-                    .name("Bulat")
-                    .surname("Bilalov")
-                    .patronymic("Foatovich")
-                    .created(new Date())
-                    .git_path("https://github.com/Cupcake-master/glowing-eureka.git")
-                    .squad_id(squadService.findByName("11-906").get())
-                    .user_id(userService.findUserByAuthentication(authentication))
-                    .build();
+            repository.setCreated(new Date());
+            repository.setSquad_id(squadService.findByName("11-906").get());
+            repository.setUser_id(userService.findUserByAuthentication(authentication));
             Map<Boolean, List<Task>> solvedAndUnsolvedTasks = repositoryService.handler(repository);
             List<File> files = checkGitRepositoriesService
                     .findJavaFiles(repository.getStorage_path());
