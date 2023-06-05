@@ -41,6 +41,10 @@
                     <li class="nav-item" role="presentation"><a class="nav-link"
                                                                 href="${rc.getContextPath()}/home">Home</a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
+                                                                href="${rc.getContextPath()}/modules">Модули</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link"
+                                                                href="${rc.getContextPath()}/tasks">Задачи</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link"
                                                                 href="${rc.getContextPath()}/repository">Репозиторий</a>
                     </li>
                     <li class="nav-item" role="presentation"><a class="nav-link"
@@ -48,10 +52,6 @@
                     <li class="nav-item" role="presentation"><a class="nav-link"
                                                                 href="${rc.getContextPath()}/developers">Разработчики</a>
                     </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link custom-navbar"
-                                                                href="${rc.getContextPath()}/feedback">Contact</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link custom-navbar"
-                                                                href="${rc.getContextPath()}/aboutUs">About us</a></li>
                 </ul>
                 <ul class="nav navbar-nav ml-auto">
                     <li class="dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown"
